@@ -1,5 +1,6 @@
 package com.aquarius314.engine.graphics
 
+import com.aquarius314.engine.effects.GraphicalEffects
 import com.aquarius314.engine.resources.ImageManager
 import com.aquarius314.plane.main.Resources
 import com.badlogic.gdx.Gdx
@@ -12,7 +13,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 
 
-
 class Renderer(var shapeRenderer: ShapeRenderer = ShapeRenderer(),
                var spriteBatch: SpriteBatch = SpriteBatch()) {
 
@@ -23,6 +23,8 @@ class Renderer(var shapeRenderer: ShapeRenderer = ShapeRenderer(),
     fun renderBackground() {
         Gdx.gl.glClearColor(0.2f, 0.49f, 0.96f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+        // also do whatever needs to be done with each rendering cycle
+        GraphicalEffects.shake--
     }
 
     fun circle(x: Float, y: Float, r: Float, color: Color) {
@@ -45,9 +47,20 @@ class Renderer(var shapeRenderer: ShapeRenderer = ShapeRenderer(),
         sprite.setSize(sprite.width/scaling, sprite.height/scaling)
         sprite.rotation = rotation
         sprite.setOrigin(sprite.width/2f, sprite.height/2f)
-        sprite.setPosition(x - sprite.width/2f, y - sprite.height/2f)
+        sprite.setPosition(coordinateWithEffects(x) - sprite.width/2f,
+                coordinateWithEffects(y) - sprite.height/2f)
         sprite.draw(spriteBatch)
         spriteBatch.end()
+    }
+
+    protected fun coordinateWithEffects(c: Float) : Float = c + getDistortion()
+
+    protected fun getDistortion() : Int {
+        var distortion = GraphicalEffects.shake
+        if (distortion%2 == 0) {
+            distortion = -distortion
+        }
+        return distortion
     }
 
     private fun renderShape(action: () -> Unit) {

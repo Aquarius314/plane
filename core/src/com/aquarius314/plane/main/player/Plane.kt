@@ -2,40 +2,27 @@ package com.aquarius314.plane.main.player
 
 import com.aquarius314.engine.graphics.Renderer
 import com.aquarius314.engine.logic.Active
-import com.aquarius314.engine.logic.GameObject
 import com.aquarius314.engine.logic.MeasurableProperty
+import com.aquarius314.engine.logic.Movable
 import com.aquarius314.plane.main.GdxGame
-import com.aquarius314.plane.main.elements.Smoke
-import java.util.*
+import com.aquarius314.plane.main.effects.SmokeManager
 
-class Plane constructor(x: Float, y: Float) : GameObject(x, y), Active {
+class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
 
-    val ySpeed = MeasurableProperty(-10f, 4f, 0f)
-    val smoke = arrayListOf<Smoke>()
-    var smokeCounter = 0
+    override var xSpeed = MeasurableProperty(0f, 0f)
+    override var ySpeed = MeasurableProperty(-10f, 10f, 0f)
+    val smokeManager = SmokeManager(this)
 
     override fun display(renderer: Renderer) {
-        smoke.forEach { s -> s.display(renderer) }
+        smokeManager.display(renderer)
         val rotation = ySpeed.value * 10f
         renderer.image("plane.png", x, y, rotation)
     }
 
     override fun actions(game: GdxGame) {
         ySpeed.value -= 0.1f
-        y += ySpeed.value
-        addSmoke()
-        smoke.forEach { s -> s.actions(game) }
-    }
-
-    private fun addSmoke() {
-        smokeCounter++
-        if (smokeCounter == 5) {
-            smokeCounter = 0
-            smoke.add(Smoke(x, y, Math.abs(Random().nextInt()%4)))
-            if (smoke.size > 10) {
-                smoke.removeAt(0)
-            }
-        }
+        move(0f, ySpeed.value)
+        smokeManager.actions(game)
     }
 
     fun jump(game: GdxGame) {

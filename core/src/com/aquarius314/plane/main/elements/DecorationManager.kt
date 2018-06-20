@@ -11,10 +11,10 @@ import java.util.*
 
 class DecorationManager : Displayable, Active {
 
-    val clouds = arrayListOf<Cloud>()
-    val cloudGenerator: ElementGenerator
-    val mountains = arrayListOf<Mountain>()
-    val mountainGenerator: ElementGenerator
+    private val clouds = arrayListOf<Cloud>()
+    private val cloudGenerator: ElementGenerator
+    private val mountains = arrayListOf<Mountain>()
+    private val mountainGenerator: ElementGenerator
 
     init {
         val cloudFactory = {
@@ -42,12 +42,12 @@ class DecorationManager : Displayable, Active {
     }
 
     private fun removeOldClouds() {
-        val oldClouds = clouds.filter { c -> c.isVisible() }
+        val oldClouds = clouds.filter { c -> !c.isVisible() }
         clouds.removeAll(oldClouds)
     }
 
     private fun removeOldMountains() {
-        val oldMountains = mountains.filter { m -> m.isVisible() }
+        val oldMountains = mountains.filter { m -> !m.isVisible() }
         mountains.removeAll(oldMountains)
     }
 

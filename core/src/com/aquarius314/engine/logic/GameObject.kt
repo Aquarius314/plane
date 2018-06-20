@@ -13,8 +13,12 @@ abstract class GameObject constructor(x: Float = 0f, y: Float = 0f) : Displayabl
         this.y = y
     }
 
-    fun collidesWith(other: GameObject) : Boolean =
-            distance(x, y, other.x, other.y) <= colliderR + other.colliderR
+    fun collidesWith(other: GameObject) : Boolean {
+        if (this === other) {
+            return false
+        }
+        return distance(x, y, other.x, other.y) <= colliderR + other.colliderR
+    }
 
     private fun distance(x1: Float, y1: Float, x2: Float, y2: Float) : Float{
         return Math.sqrt(Math.pow(x1.toDouble() - x2.toDouble(), 2.0) +

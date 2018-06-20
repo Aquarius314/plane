@@ -1,7 +1,6 @@
 package com.aquarius314.plane.main
 
 import com.aquarius314.engine.graphics.Renderer
-import com.aquarius314.engine.logic.GameObject
 import com.aquarius314.engine.resources.SoundManager
 import com.aquarius314.plane.main.elements.DecorationManager
 import com.aquarius314.plane.main.player.Plane
