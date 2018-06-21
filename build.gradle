@@ -70,6 +70,7 @@ project(":core") {
         compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         compile 'junit:junit:4.12'
+        testCompile "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-alpha01"
     }
 }
 

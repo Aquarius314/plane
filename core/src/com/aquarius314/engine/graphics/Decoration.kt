@@ -11,7 +11,7 @@ abstract class Decoration(x: Float, y: Float, var imageFileName: String) : Movab
     }
 
     override fun actions(game: GdxGame) {
-        move(-xSpeed.value, 0f)
+        move(-xSpeed, 0f)
     }
 
     fun isVisible() : Boolean = x + 500 > 0

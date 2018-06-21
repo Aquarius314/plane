@@ -1,20 +1,9 @@
-package com.aquarius314.plane.main.weapons
+package com.aquarius314.engine.logic
 
-import com.aquarius314.engine.graphics.Renderer
-import com.aquarius314.engine.logic.Movable
+ abstract class Missile constructor(x: Float, y: Float, var rotation: Float): Movable(x, y) {
 
-class Bullet constructor(x: Float, y: Float, var rotation: Float): Movable(x, y) {
-
-    override var xSpeed: Float = 0f
-    override var ySpeed: Float = 0f
-
-    init {
-        xSpeed = 0f
-        ySpeed = 0f
-    }
-
-    override fun display(renderer: Renderer) {
-        renderer.image("bullet.png", x, y, rotation = rotation)
-    }
+     var unitSpeed = 10f
+     override var xSpeed = (Math.cos(Math.toRadians(rotation.toDouble())) * unitSpeed).toFloat()
+     override var ySpeed = (Math.sin(Math.toRadians(rotation.toDouble())) * unitSpeed).toFloat()
 
 }

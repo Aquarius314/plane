@@ -5,6 +5,7 @@ import com.aquarius314.engine.logic.MeasurableProperty
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.mockito.Mockito.mock
 
 class DecorationTests {
 
@@ -12,17 +13,19 @@ class DecorationTests {
     private val x = 3f
     private val y = 4f
 
-    class DecorationImplementation(
-            x: Float,
-            y: Float,
-            img: String,
-            override var xSpeed: MeasurableProperty = MeasurableProperty(3f, 3f),
-            override var ySpeed: MeasurableProperty = MeasurableProperty(0f, 0f))
-        : Decoration(x, y, img)
+    private fun mockDecoration(x: Float, y: Float, filename: String) : Decoration {
+        val dec = mock(Decoration::class.java)
+        dec.x = x
+        dec.y = y
+        dec.imageFileName = filename
+        dec.xSpeed = 3f
+        dec.ySpeed = 0f
+        return dec
+    }
 
     @Test
     fun testDecorationCreation() {
-        val decoration = DecorationImplementation(x, y, filename)
+        val decoration = mockDecoration(x, y, filename)
         assertTrue(decoration.x == x)
         assertTrue(decoration.y == y)
         assertTrue(decoration.imageFileName == filename)
@@ -31,15 +34,15 @@ class DecorationTests {
 
     @Test
     fun testDecorationVisibility() {
-        val decoration = DecorationImplementation(-500f, y, filename)
+        val decoration = mockDecoration(-500f, y, filename)
         assertFalse(decoration.isVisible())
     }
 
     @Test
     fun testDecorationMove() {
-        val decoration = DecorationImplementation(x, y, filename)
-        decoration.move(-decoration.xSpeed.value, 0f)
-        assertTrue(decoration.x == x - decoration.xSpeed.value)
+        val decoration = mockDecoration(x, y, filename)
+        decoration.move()
+        assertTrue(decoration.x == x + decoration.xSpeed)
         decoration.moveTo(-100f, -100f)
         assertTrue(decoration.x == -100f && decoration.y == -100f)
     }
