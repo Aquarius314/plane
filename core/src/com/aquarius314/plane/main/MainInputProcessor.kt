@@ -8,7 +8,7 @@ class MainInputProcessor constructor(var game: GdxGame) : GameInputProcessor() {
     override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
         val x = screenX.toFloat()
         val y = (Gdx.graphics.height - screenY).toFloat()
-        if (!game.ui.anyButtonClicked(x, y)) {
+        if (!game.ui!!.anyButtonClicked(x, y)) {
             game.plane.jump(game)
         }
 //        GraphicalEffects.shake = 10

@@ -6,7 +6,7 @@ abstract class Button constructor(x: Float, y: Float, radius: Float,
                          var imgFile: String) : Clickable(x, y, radius) {
 
     override fun display(renderer: Renderer) {
-        renderer.image(imgFile, x, y)
+        renderer.image(imgFile, x, y, scale = false)
     }
 
 }

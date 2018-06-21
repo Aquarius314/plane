@@ -3,19 +3,39 @@ package com.aquarius314.plane.main
 import com.aquarius314.engine.graphics.Displayable
 import com.aquarius314.engine.graphics.Renderer
 import com.aquarius314.engine.ui.Button
+import com.badlogic.gdx.Gdx
 
 class UIManager constructor(var game: GdxGame) : Displayable{
 
     val buttons = arrayListOf<Button>()
 
     init {
-        buttons.add(
-            object : Button(100f, 100f, 50f, "buttonshoot.png") {
+        val radius = 50f
+        val distance = 20f
+        val right = Gdx.graphics.width
+        val up = Gdx.graphics.height
+        buttons.addAll(listOf(
+            object : Button(radius + distance, radius + distance, radius, "buttonfly.png") {
+                override fun onClick(x: Float, y: Float) {
+                    println("Hehe $imgFile was clicked")
+                }
+            },
+            object : Button(right - radius - distance, radius + distance, radius, "buttonshoot.png") {
+                override fun onClick(x: Float, y: Float) {
+                    println("Hehe $imgFile was clicked")
+                }
+            },
+            object : Button(right - radius*3 - distance*2, radius + distance, radius, "buttonrocket.png") {
+                override fun onClick(x: Float, y: Float) {
+                    println("Hehe $imgFile was clicked")
+                }
+            },
+            object : Button(right - radius - distance, up - radius - distance, radius, "buttonmenu.png") {
                 override fun onClick(x: Float, y: Float) {
                     println("Hehe $imgFile was clicked")
                 }
             }
-        )
+        ))
     }
 
     override fun display(renderer: Renderer) {

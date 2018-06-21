@@ -13,12 +13,15 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 
 
-class Renderer(var shapeRenderer: ShapeRenderer = ShapeRenderer(),
-               var spriteBatch: SpriteBatch = SpriteBatch()) {
+class Renderer(protected var shapeRenderer: ShapeRenderer = ShapeRenderer(),
+               protected var spriteBatch: SpriteBatch = SpriteBatch()) {
 
-    val imageManager = ImageManager(Resources.textures)
+    protected val imageManager = ImageManager(Resources.textures)
 
-    val scaling = Gdx.graphics.width/400f
+    companion object {
+        var scaling = Gdx.graphics.width/400f
+            get() = Gdx.graphics.width/400f
+    }
 
     fun renderBackground() {
         spriteBatch.begin()
@@ -43,12 +46,14 @@ class Renderer(var shapeRenderer: ShapeRenderer = ShapeRenderer(),
         renderShape { shapeRenderer.rectLine(Vector2(x1, y1), Vector2(x2, y2), 4f) }
     }
 
-    fun image(image: String, x: Float, y: Float, rotation: Float = 0f) {
-        val image = imageManager.get(image)
+    fun image(imageFile: String, x: Float, y: Float, scale: Boolean = true, rotation: Float = 0f) {
+        val image = imageManager.get(imageFile)
         val sprite = Sprite(image)
         sprite.texture.setFilter(Texture.TextureFilter.Linear,
                 Texture.TextureFilter.Linear)
-        sprite.setSize(sprite.width/scaling, sprite.height/scaling)
+        if (scale) {
+            sprite.setSize(sprite.width/scaling, sprite.height/scaling)
+        }
         sprite.rotation = rotation
         sprite.setOrigin(sprite.width/2f, sprite.height/2f)
         sprite.setPosition(coordinateWithEffects(x) - sprite.width/2f,

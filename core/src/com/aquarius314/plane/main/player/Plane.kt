@@ -9,6 +9,8 @@ import com.aquarius314.plane.main.effects.SmokeManager
 
 class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
 
+    val frozen = true
+
     override var xSpeed = MeasurableProperty(0f, 0f)
     override var ySpeed = MeasurableProperty(-10f, 10f, 0f)
     val smokeManager = SmokeManager(this)
@@ -16,12 +18,14 @@ class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
     override fun display(renderer: Renderer) {
         smokeManager.display(renderer)
         val rotation = ySpeed.value * 10f
-        renderer.image("plane.png", x, y, rotation)
+        renderer.image("plane.png", x, y, rotation = rotation)
     }
 
     override fun actions(game: GdxGame) {
-        ySpeed.value -= 0.1f
-        move(0f, ySpeed.value)
+        if (!frozen) {
+            ySpeed.value -= 0.1f
+            move(0f, ySpeed.value)
+        }
         smokeManager.actions(game)
     }
 
