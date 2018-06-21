@@ -4,7 +4,7 @@ import com.aquarius314.engine.logic.MeasurableProperty
 import junit.framework.Assert.assertTrue
 import org.junit.Test
 
-class TestMeasurableProperty {
+class MeasurablePropertyTest {
 
     private val min = -10f
     private val max = 20f

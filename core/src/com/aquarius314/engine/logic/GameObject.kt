@@ -6,7 +6,7 @@ abstract class GameObject constructor(x: Float = 0f, y: Float = 0f) : Displayabl
 
     var x = 0f
     var y = 0f
-    var colliderR = 30f
+    open var colliderR = 30f
 
     init {
         this.x = x

@@ -17,22 +17,22 @@ class UIManager constructor(var game: GdxGame) : Displayable{
         buttons.addAll(listOf(
             object : Button(radius + distance, radius + distance, radius, "buttonfly.png") {
                 override fun onClick(x: Float, y: Float) {
-                    println("Hehe $imgFile was clicked")
+                    game.plane.jump()
                 }
             },
             object : Button(right - radius - distance, radius + distance, radius, "buttonshoot.png") {
                 override fun onClick(x: Float, y: Float) {
-                    println("Hehe $imgFile was clicked")
+                    game.plane.shoot()
                 }
             },
             object : Button(right - radius*3 - distance*2, radius + distance, radius, "buttonrocket.png") {
                 override fun onClick(x: Float, y: Float) {
-                    println("Hehe $imgFile was clicked")
+                    game.plane.releaseRocket()
                 }
             },
             object : Button(right - radius - distance, up - radius - distance, radius, "buttonmenu.png") {
                 override fun onClick(x: Float, y: Float) {
-                    println("Hehe $imgFile was clicked")
+                    game.openMenu()
                 }
             }
         ))
@@ -43,7 +43,7 @@ class UIManager constructor(var game: GdxGame) : Displayable{
     }
 
     fun anyButtonClicked(x: Float, y: Float) : Boolean {
-        var anyButtonClicked: Boolean = false
+        var anyButtonClicked = false
         for (b in buttons) {
             anyButtonClicked = anyButtonClicked || b.checkClick(x, y)
         }

@@ -72,9 +72,11 @@ class Renderer(protected var shapeRenderer: ShapeRenderer = ShapeRenderer(),
     }
 
     private fun renderShape(action: () -> Unit) {
+        spriteBatch.end()
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
         action()
         shapeRenderer.end()
+        spriteBatch.begin()
     }
 
     fun dispose() {

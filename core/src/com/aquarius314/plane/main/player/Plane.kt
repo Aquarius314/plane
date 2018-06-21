@@ -6,32 +6,50 @@ import com.aquarius314.engine.logic.MeasurableProperty
 import com.aquarius314.engine.logic.Movable
 import com.aquarius314.plane.main.GdxGame
 import com.aquarius314.plane.main.effects.SmokeManager
+import com.aquarius314.plane.main.weapons.WeaponManager
 
 class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
 
-    val frozen = true
+    var frozen = true
+    var game: GdxGame? = null
 
-    override var xSpeed = MeasurableProperty(0f, 0f)
-    override var ySpeed = MeasurableProperty(-10f, 10f, 0f)
+    override var xSpeed = 0f
+    override var ySpeed = 0.1f
+    var gravity = MeasurableProperty(-8f, 8f, 0f)
     val smokeManager = SmokeManager(this)
+    val weaponManager = WeaponManager(this)
+    var rotation: Float = gravity.value * 10f
+        get() = gravity.value * 10f
 
     override fun display(renderer: Renderer) {
         smokeManager.display(renderer)
-        val rotation = ySpeed.value * 10f
+        weaponManager.display(renderer)
         renderer.image("plane.png", x, y, rotation = rotation)
     }
 
     override fun actions(game: GdxGame) {
         if (!frozen) {
-            ySpeed.value -= 0.1f
-            move(0f, ySpeed.value)
+            gravity.value -= 0.1f
+            move(0f, gravity.value)
         }
         smokeManager.actions(game)
+        weaponManager.actions(game)
     }
 
-    fun jump(game: GdxGame) {
-        ySpeed.value = 4f
-        game.soundManager!!.playSound("fly.mp3", 1.5f)
+    fun jump() {
+        gravity.value = 4f
+        game!!.soundManager!!.playSound("fly.mp3", 1.5f)
+    }
+
+    fun shoot() {
+        weaponManager.addBullet()
+        game!!.soundManager!!.playSound("shoot.mp3")
+    }
+
+    fun releaseRocket() {
+        // TODO
+        game!!.soundManager!!.playSound("shoot.mp3")
+        game!!.soundManager!!.playSound("rocket.mp3", 1.5f)
     }
 
 }

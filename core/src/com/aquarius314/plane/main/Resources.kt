@@ -19,11 +19,17 @@ object Resources {
             "buttonshoot.png",
             "buttonfly.png",
             "buttonrocket.png",
-            "buttonmenu.png"
+            "buttonmenu.png",
+            "bullet.png",
+            "bulletsmoke.png"
     )
 
     var sounds = listOf(
-        "fly.mp3"
+            "fly.mp3",
+            "explosion.mp3",
+            "shoot.mp3",
+            "enemyshoot.mp3",
+            "rocket.mp3"
     )
 
     var numberOfMountains = 4

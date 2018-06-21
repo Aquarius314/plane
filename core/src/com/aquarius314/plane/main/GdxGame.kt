@@ -22,7 +22,12 @@ class GdxGame : ApplicationAdapter() {
         soundManager = SoundManager(Resources.sounds)
         decorationManager = DecorationManager()
         Gdx.input.inputProcessor = MainInputProcessor(this)
+        plane.game = this
 	}
+
+    fun openMenu() {
+        plane.frozen = !plane.frozen
+    }
 
 	override fun render () {
         calculate()
