@@ -9,7 +9,7 @@ import java.util.*
 
 class GameObjectTests {
 
-    class GameObjectImplementation constructor(x: Float = 0f, y: Float = 0f): GameObject(x, y) {
+    private class GameObjectImplementation constructor(x: Float = 0f, y: Float = 0f): GameObject(x, y) {
         override fun display(renderer: Renderer) {}
     }
 
