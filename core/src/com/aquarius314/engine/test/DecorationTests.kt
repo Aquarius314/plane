@@ -40,6 +40,8 @@ class DecorationTests {
         val decoration = DecorationImplementation(x, y, filename)
         decoration.move(-decoration.xSpeed.value, 0f)
         assertTrue(decoration.x == x - decoration.xSpeed.value)
+        decoration.moveTo(-100f, -100f)
+        assertTrue(decoration.x == -100f && decoration.y == -100f)
     }
 
 }

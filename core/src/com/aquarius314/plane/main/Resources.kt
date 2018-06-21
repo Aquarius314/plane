@@ -15,7 +15,8 @@ object Resources {
             "mountain0.png",
             "mountain1.png",
             "mountain2.png",
-            "mountain3.png"
+            "mountain3.png",
+            "buttonshoot.png"
     )
 
     var sounds = listOf(

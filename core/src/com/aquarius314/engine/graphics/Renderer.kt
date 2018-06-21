@@ -21,8 +21,13 @@ class Renderer(var shapeRenderer: ShapeRenderer = ShapeRenderer(),
     val scaling = Gdx.graphics.width/400f
 
     fun renderBackground() {
+        spriteBatch.begin()
         Gdx.gl.glClearColor(0.2f, 0.49f, 0.96f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+    }
+
+    fun finishRendering() {
+        spriteBatch.end()
         // also do whatever needs to be done with each rendering cycle
         GraphicalEffects.shake--
     }
@@ -39,7 +44,6 @@ class Renderer(var shapeRenderer: ShapeRenderer = ShapeRenderer(),
     }
 
     fun image(image: String, x: Float, y: Float, rotation: Float = 0f) {
-        spriteBatch.begin()
         val image = imageManager.get(image)
         val sprite = Sprite(image)
         sprite.texture.setFilter(Texture.TextureFilter.Linear,
@@ -50,7 +54,6 @@ class Renderer(var shapeRenderer: ShapeRenderer = ShapeRenderer(),
         sprite.setPosition(coordinateWithEffects(x) - sprite.width/2f,
                 coordinateWithEffects(y) - sprite.height/2f)
         sprite.draw(spriteBatch)
-        spriteBatch.end()
     }
 
     protected fun coordinateWithEffects(c: Float) : Float = c + getDistortion()

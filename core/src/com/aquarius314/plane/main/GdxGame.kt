@@ -13,6 +13,7 @@ class GdxGame : ApplicationAdapter() {
     var renderer: Renderer? = null
     var soundManager: SoundManager? = null
     var decorationManager : DecorationManager? = null
+    val ui = UIManager(this)
 //    val gameObjects = arrayListOf<GameObject>()
 
 	override fun create () {
@@ -36,6 +37,8 @@ class GdxGame : ApplicationAdapter() {
         renderer!!.renderBackground()
         decorationManager!!.display(renderer!!)
         plane.display(renderer!!)
+        ui.display(renderer!!)
+        renderer!!.finishRendering()
     }
 
 	override fun dispose () {
