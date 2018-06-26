@@ -1,19 +1,20 @@
 package com.aquarius314.engine.logic
 
-import com.aquarius314.plane.main.GdxGame
 import java.util.*
 
-class ElementGenerator(private var factoryFunction : (x: Float, y: Float) -> Boolean,
-                       var minX: Int, var maxX: Int, var minY: Int, var maxY: Int,
-                       var generationTime: Int) : Active {
+class ElementGenerator<T>(
+        private var factoryFunction : (x: Float, y: Float, collection: ArrayList<T>) -> Boolean,
+        var minX: Int, var maxX: Int,
+        var minY: Int, var maxY: Int,
+        var generationTime: Int) {
 
     var lastGeneration = 0L
 
-    override fun actions(game: GdxGame) {
+    fun generateInto(collection: ArrayList<T>) {
         val currentTime = System.currentTimeMillis()
         if (currentTime - lastGeneration > generationTime) {
             lastGeneration = currentTime + Random().nextInt()%(generationTime/3)
-            factoryFunction(randX().toFloat(), randY().toFloat())
+            factoryFunction(randX().toFloat(), randY().toFloat(), collection)
         }
     }
 

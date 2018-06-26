@@ -1,9 +1,15 @@
 package com.aquarius314.engine.logic
 
-abstract class Movable constructor(x: Float = 0f, y: Float = 0f) : GameObject(x, y) {
+import com.aquarius314.plane.main.GdxGame
+
+abstract class Movable constructor(x: Float = 0f, y: Float = 0f) : GameObject(x, y), ActiveFragment {
 
     abstract var xSpeed: Float
     abstract var ySpeed: Float
+
+    override fun actions(game: GdxGame) {
+        move()
+    }
 
     open fun move(x: Float, y: Float) {
         this.x += x
@@ -19,5 +25,9 @@ abstract class Movable constructor(x: Float = 0f, y: Float = 0f) : GameObject(x,
         this.x = x
         this.y = y
     }
+
+    override fun isExpired() : Boolean = !isVisible()
+
+    override fun isVisible(): Boolean = x + 500 > 0
 
 }

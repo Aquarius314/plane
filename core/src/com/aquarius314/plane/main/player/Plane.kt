@@ -15,6 +15,9 @@ class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
 
     override var xSpeed = 0f
     override var ySpeed = 0.1f
+    private var maxHealth = 100f
+    var points = 0
+    var health = MeasurableProperty(0f, maxHealth, maxHealth)
     var gravity = MeasurableProperty(-8f, 8f, 0f)
     val smokeManager = SmokeManager(this)
     val weaponManager = WeaponManager(this)
@@ -42,8 +45,9 @@ class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
     }
 
     fun shoot() {
-        weaponManager.addBullet()
-        game!!.soundManager!!.playSound("shoot.mp3")
+        if (weaponManager.addBullet()) {
+            game!!.soundManager!!.playSound("shoot.mp3")
+        }
     }
 
     fun releaseRocket() {

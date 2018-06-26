@@ -11,4 +11,6 @@ object Utils {
         return distance(pointX, pointY, areaX, areaY) <= areaR
     }
 
+    fun <T> elementFactory(collection: ArrayList<T>, fn: (Float, Float) -> T)
+            : (Float, Float) -> Boolean = { x, y -> collection.add(fn(x, y)) }
 }

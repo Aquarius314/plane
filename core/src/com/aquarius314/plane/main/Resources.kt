@@ -21,7 +21,11 @@ object Resources {
             "buttonrocket.png",
             "buttonmenu.png",
             "bullet.png",
-            "bulletsmoke.png"
+            "bulletsmoke.png",
+            "boxhealth.png",
+            "boxweapon.png",
+            "boxpoints.png",
+            "boxrocket.png"
     )
 
     var sounds = listOf(

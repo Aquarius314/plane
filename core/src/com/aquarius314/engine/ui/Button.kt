@@ -9,4 +9,6 @@ abstract class Button constructor(x: Float, y: Float, radius: Float,
         renderer.image(imgFile, x, y, scale = false)
     }
 
+    override fun isVisible(): Boolean = true
+
 }

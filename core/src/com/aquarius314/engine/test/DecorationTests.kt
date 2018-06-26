@@ -1,7 +1,6 @@
 package com.aquarius314.engine.test
 
 import com.aquarius314.engine.graphics.Decoration
-import com.aquarius314.engine.logic.MeasurableProperty
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -29,13 +28,13 @@ class DecorationTests {
         assertTrue(decoration.x == x)
         assertTrue(decoration.y == y)
         assertTrue(decoration.imageFileName == filename)
-        assertTrue(decoration.isVisible())
+        assertTrue(!decoration.isExpired())
     }
 
     @Test
     fun testDecorationVisibility() {
         val decoration = mockDecoration(-500f, y, filename)
-        assertFalse(decoration.isVisible())
+        assertFalse(decoration.isExpired())
     }
 
     @Test

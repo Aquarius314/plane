@@ -2,6 +2,7 @@ package com.aquarius314.engine.test
 
 import com.aquarius314.engine.graphics.Renderer
 import com.aquarius314.engine.logic.Missile
+import com.aquarius314.plane.main.GdxGame
 import junit.framework.Assert.assertTrue
 import org.junit.Test
 import java.util.*
@@ -9,6 +10,7 @@ import java.util.*
 class MissileTests {
 
     private class MissileImpl constructor(x: Float, y: Float, r: Float): Missile(x, y, r) {
+        override fun actions(game: GdxGame) {}
         override fun display(renderer: Renderer) {}
     }
 
@@ -26,8 +28,10 @@ class MissileTests {
         val y = (Random().nextInt()%1000).toFloat()
         val r = (Random().nextInt()%720 - 360).toFloat()
         val missile = MissileImpl(x, y, r)
-        assertTrue(missile.xSpeed == (Math.cos(Math.toRadians(r.toDouble())) * 10f).toFloat())
-        assertTrue(missile.ySpeed == (Math.sin(Math.toRadians(r.toDouble())) * 10f).toFloat())
+        val expectedXSpeed = (Math.cos(Math.toRadians(r.toDouble())) * missile.unitSpeed).toFloat()
+        val expectedYSpeed = (Math.sin(Math.toRadians(r.toDouble())) * missile.unitSpeed).toFloat()
+        assertTrue(missile.xSpeed == expectedXSpeed)
+        assertTrue(missile.ySpeed == expectedYSpeed)
         missile.move()
         assertTrue(missile.x == x + missile.xSpeed)
         assertTrue(missile.y == y + missile.ySpeed)

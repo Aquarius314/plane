@@ -5,7 +5,7 @@ import com.aquarius314.engine.graphics.Renderer
 import com.aquarius314.engine.ui.Button
 import com.badlogic.gdx.Gdx
 
-class UIManager constructor(var game: GdxGame) : Displayable{
+class UIManager constructor(var game: GdxGame) {
 
     val buttons = arrayListOf<Button>()
 
@@ -38,7 +38,7 @@ class UIManager constructor(var game: GdxGame) : Displayable{
         ))
     }
 
-    override fun display(renderer: Renderer) {
+    fun display(renderer: Renderer) {
         buttons.forEach { b -> b.display(renderer) }
     }
 
