@@ -10,7 +10,6 @@ import com.badlogic.gdx.Gdx
 class GameElementsManager : Active {
 
     private val bonusManager : CollectionManager<Bonus>
-    val counts = arrayOf(0, 0, 0, 0)
 
     init {
         val bonusFactory = {

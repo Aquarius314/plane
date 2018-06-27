@@ -1,6 +1,9 @@
 package com.aquarius314.engine.ui
 
-import com.aquarius314.engine.graphics.Displayable
-import com.aquarius314.engine.logic.Active
+import com.aquarius314.engine.graphics.Renderer
+import com.aquarius314.plane.main.GdxGame
 
-interface UIFragment : Active, Displayable
+interface UIFragment {
+    fun display(renderer: Renderer)
+    fun actions(game: GdxGame)
+}

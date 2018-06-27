@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
@@ -16,7 +17,8 @@ import com.badlogic.gdx.math.Vector2
 class Renderer(protected var shapeRenderer: ShapeRenderer = ShapeRenderer(),
                protected var spriteBatch: SpriteBatch = SpriteBatch()) {
 
-    protected val imageManager = ImageManager(Resources.textures)
+    private val imageManager = ImageManager(Resources.textures)
+    private val font = BitmapFont(Gdx.files.internal(Resources.font))
 
     companion object {
         var scaling = Gdx.graphics.width/400f
@@ -59,6 +61,11 @@ class Renderer(protected var shapeRenderer: ShapeRenderer = ShapeRenderer(),
         sprite.setPosition(coordinateWithEffects(x) - sprite.width/2f,
                 coordinateWithEffects(y) - sprite.height/2f)
         sprite.draw(spriteBatch)
+    }
+
+    fun text(text: String, x: Float, y: Float) {
+        font.draw(spriteBatch, text, x, y)
+        println((1f * Gdx.graphics.width/Gdx.graphics.height / 1f).toString())
     }
 
     protected fun coordinateWithEffects(c: Float) : Float = c + getDistortion()

@@ -15,4 +15,8 @@ open class MeasurableProperty constructor(var min: Float, var max: Float, initia
         this.value = initialValue
     }
 
+    override fun toString() : String {
+        return value.toInt().toString()
+    }
+
 }

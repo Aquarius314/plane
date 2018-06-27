@@ -1,12 +1,11 @@
 package com.aquarius314.plane.main
 
-import com.aquarius314.engine.graphics.Displayable
 import com.aquarius314.engine.graphics.Renderer
 import com.aquarius314.engine.ui.Button
+import com.aquarius314.engine.ui.UIFragment
 import com.badlogic.gdx.Gdx
 
-class UIManager constructor(var game: GdxGame) {
-
+class UIManager constructor(var game: GdxGame) : UIFragment {
     val buttons = arrayListOf<Button>()
 
     init {
@@ -38,7 +37,7 @@ class UIManager constructor(var game: GdxGame) {
         ))
     }
 
-    fun display(renderer: Renderer) {
+    override fun display(renderer: Renderer) {
         buttons.forEach { b -> b.display(renderer) }
     }
 
@@ -49,5 +48,7 @@ class UIManager constructor(var game: GdxGame) {
         }
         return anyButtonClicked
     }
+
+    override fun actions(game: GdxGame) {}
 
 }

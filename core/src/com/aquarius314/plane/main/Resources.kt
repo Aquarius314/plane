@@ -25,7 +25,10 @@ object Resources {
             "boxhealth.png",
             "boxweapon.png",
             "boxpoints.png",
-            "boxrocket.png"
+            "boxrocket.png",
+            "uibullets.png",
+            "uicoin.png",
+            "uirocket.png"
     )
 
     var sounds = listOf(
@@ -35,6 +38,8 @@ object Resources {
             "enemyshoot.mp3",
             "rocket.mp3"
     )
+
+    val font = "font/font.fnt"
 
     var numberOfMountains = 4
     var numberOfClouds = 4
