@@ -1,5 +1,6 @@
 package com.aquarius314.plane.main
 
+import com.aquarius314.engine.application.Settings
 import com.aquarius314.engine.resources.ImageManager
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture

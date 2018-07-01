@@ -1,6 +1,6 @@
 package com.aquarius314.engine.resources
 
-import com.aquarius314.plane.main.Settings
+import com.aquarius314.engine.application.Settings
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.Gdx
 
