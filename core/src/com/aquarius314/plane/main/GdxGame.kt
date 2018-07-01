@@ -7,7 +7,7 @@ import com.aquarius314.plane.main.elements.DecorationManager
 import com.aquarius314.plane.main.elements.GameElementsManager
 import com.aquarius314.plane.main.player.Plane
 
-class GdxGame constructor(gameMaster: GameMaster,
+open class GdxGame constructor(gameMaster: GameMaster,
                           renderer: Renderer,
                           soundManager: SoundManager) : GameScreen(gameMaster, renderer, soundManager) {
 

@@ -41,19 +41,19 @@ class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
 
     fun jump() {
         gravity.value = 4f
-        game!!.soundManager!!.playSound("fly.mp3", 1.5f)
+        game!!.soundManager.playSound("fly.mp3", 1.5f)
     }
 
     fun shoot() {
         if (weaponManager.addBullet()) {
-            game!!.soundManager!!.playSound("shoot.mp3")
+            game!!.soundManager.playSound("shoot.mp3")
         }
     }
 
     fun releaseRocket() {
         // TODO
-        game!!.soundManager!!.playSound("shoot.mp3")
-        game!!.soundManager!!.playSound("rocket.mp3", 1.5f)
+        game!!.soundManager.playSound("shoot.mp3")
+        game!!.soundManager.playSound("rocket.mp3", 1.5f)
     }
 
 }

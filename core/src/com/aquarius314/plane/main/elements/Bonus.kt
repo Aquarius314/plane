@@ -9,10 +9,6 @@ class Bonus constructor(x: Float, y: Float) : Movable(x, y) {
 
     override var xSpeed = -2.5f
     override var ySpeed = -0.5f
-    val points = 10
-    val rockets = 3
-    val health = 50
-    val ammunition = 20
 
     private var isCollected = false
     private val type : BonusType = BonusType.random()
