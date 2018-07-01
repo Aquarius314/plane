@@ -7,9 +7,9 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.Screen
 
-abstract class GameScreen constructor(var gameMaster: GameMaster,
-                                  var renderer: Renderer,
-                                  var soundManager: SoundManager) : Screen {
+abstract class GameScreen constructor(
+        var gameMaster: GameMaster, var renderer: Renderer, var soundManager: SoundManager
+) : Screen {
 
     abstract val inputProcessor: InputProcessor
 

@@ -1,20 +1,20 @@
 package com.aquarius314.plane.main.menu
 
+import com.aquarius314.engine.application.GameScreen
 import com.aquarius314.engine.graphics.Renderer
 import com.aquarius314.engine.ui.RectangularButton
 import com.badlogic.gdx.graphics.Color
 
 abstract class MenuButton constructor(
-        x: Float, y: Float, width: Float, height: Float, var text: String
+        x: Float, y: Float, width: Float, height: Float, var text: String, var parent: GameScreen
 ) : RectangularButton(x, y, width, height, "") {
 
     override fun display(renderer: Renderer) {
-        renderer.line(x, y, x + width, y, Color.CHARTREUSE)
-        renderer.line(x, y + height, x + width, y + height, Color.CHARTREUSE)
-        renderer.line(x, y, x, y + height, Color.CHARTREUSE)
-        renderer.line(x + width, y, x + width, y + height, Color.CHARTREUSE)
-
-        renderer.text(text, x + width/2, y + width/2)
+        renderer.frame(x, y, width, height, 10f, Color.GRAY, Color.LIGHT_GRAY)
+        renderer.text(text, x, x + width, y, y + height)
     }
 
+    override fun playClickSound() {
+        parent.soundManager.playSound("click.mp3")
+    }
 }

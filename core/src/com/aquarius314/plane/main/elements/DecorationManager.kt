@@ -29,7 +29,7 @@ class DecorationManager : Active {
         }
         val minX2 = Gdx.graphics.width + 1000
         mountainsManager = CollectionManager(ElementGenerator(
-                mountainFactory, minX2, minX2+100, 100, 101, 3000
+                mountainFactory, minX2, minX2+100, -1, 0, 3000
         ))
     }
 

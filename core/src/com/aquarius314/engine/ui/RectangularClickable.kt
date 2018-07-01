@@ -9,9 +9,14 @@ abstract class RectangularClickable constructor(
     fun checkClick(x: Float, y: Float) : Boolean {
         if (Utils.pointInRectangle(x, y, this.x, this.y, this.width, this.height)) {
             onClick(x, y)
+            playClickSound()
             return true
         }
         return false
+    }
+
+    open fun playClickSound() {
+        // no sound by default
     }
 
 }

@@ -39,7 +39,8 @@ object Resources {
             "explosion.mp3",
             "shoot.mp3",
             "enemyshoot.mp3",
-            "rocket.mp3"
+            "rocket.mp3",
+            "click.mp3"
     )
 
     val font = "font/font.fnt"

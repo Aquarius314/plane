@@ -11,6 +11,12 @@ import com.badlogic.gdx.Gdx
 class WeaponManager constructor(var plane: Plane) : UIFragment {
 
     val missiles = arrayListOf<Missile>()
+    val distance = 100f
+    val bulletsY = Gdx.graphics.height - distance * 0.5f
+    val rocketsY = Gdx.graphics.height - distance * 1.5f
+
+    val bulletsTextY = Gdx.graphics.height - distance * 0.3f
+    val rocketsTextY = Gdx.graphics.height - distance * 1.3f
 
     private val maxAmmunition = 20f
     var ammunition = MeasurableProperty(0f, maxAmmunition, maxAmmunition)
@@ -29,12 +35,10 @@ class WeaponManager constructor(var plane: Plane) : UIFragment {
     }
 
     private fun displayWeaponBar(renderer: Renderer) {
-        val scaling = 1 / Renderer.scaling
-        val distance = 100 * scaling
-        renderer.image("uibullets.png", distance / 2f, Gdx.graphics.height - distance * 0.5f)
-        renderer.image("uirocket.png", distance / 2f, Gdx.graphics.height - distance * 1.5f)
-        renderer.text(ammunition.toString(), distance, Gdx.graphics.height - distance * 0.3f)
-        renderer.text(rockets.toString(), distance, Gdx.graphics.height - distance * 1.3f)
+        renderer.image("uibullets.png", distance/2f, bulletsY)
+        renderer.image("uirocket.png", distance/2f, rocketsY)
+        renderer.text(ammunition.toString(), distance, bulletsTextY)
+        renderer.text(rockets.toString(), distance, rocketsTextY)
     }
 
     private fun removeOldMissiles() {

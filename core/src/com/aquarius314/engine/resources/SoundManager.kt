@@ -1,7 +1,6 @@
 package com.aquarius314.engine.resources
 
-import com.aquarius314.engine.resources.ResourceManager
-import com.aquarius314.engine.resources.ResourceNotFoundException
+import com.aquarius314.plane.main.Settings
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.Gdx
 
@@ -29,6 +28,9 @@ class SoundManager(files: List<String>) : ResourceManager<Sound>(files) {
     }
 
     fun playSound(soundName: String, pitch: Float) {
+        if (!Settings.soundOn) {
+            return
+        }
         if (assets.containsKey(soundName)) {
             val sound = assets[soundName]
             val id = sound!!.play()

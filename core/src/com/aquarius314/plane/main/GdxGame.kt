@@ -11,11 +11,6 @@ open class GdxGame constructor(gameMaster: GameMaster,
                           renderer: Renderer,
                           soundManager: SoundManager) : GameScreen(gameMaster, renderer, soundManager) {
 
-    companion object Level {
-        @JvmStatic
-        val levelNumber = 2
-    }
-
     override val inputProcessor = MainInputProcessor(this)
     var plane = Plane(200f, 250f)
     var decorationManager : DecorationManager? = null

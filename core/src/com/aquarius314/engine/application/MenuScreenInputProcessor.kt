@@ -1,9 +1,9 @@
-package com.aquarius314.plane.main.menu
+package com.aquarius314.engine.application
 
 import com.aquarius314.engine.ui.GameInputProcessor
 import com.badlogic.gdx.Gdx
 
-class MenuInputProcessor constructor(var menu: Menu): GameInputProcessor() {
+open class MenuScreenInputProcessor constructor(var menu: MenuScreen): GameInputProcessor() {
 
     override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
         val x = screenX.toFloat()

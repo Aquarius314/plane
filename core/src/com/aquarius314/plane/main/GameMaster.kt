@@ -2,7 +2,8 @@ package com.aquarius314.plane.main
 
 import com.aquarius314.engine.graphics.Renderer
 import com.aquarius314.engine.resources.SoundManager
-import com.aquarius314.plane.main.menu.Menu
+import com.aquarius314.plane.main.menu.MainMenu
+import com.aquarius314.plane.main.menu.OptionsMenu
 import com.badlogic.gdx.Game
 
 
@@ -13,15 +14,17 @@ class GameMaster : Game() {
 
     lateinit var renderer: Renderer
     lateinit var soundManager: SoundManager
-    lateinit var menu: Menu
+    lateinit var mainMenu: MainMenu
+    lateinit var optionsMenu: OptionsMenu
     lateinit var game: GdxGame
 
     override fun create() {
         renderer = Renderer(specialImageManager = LevelTexturesManager())
         soundManager = SoundManager(Resources.sounds)
-        menu = Menu(this, renderer, soundManager)
+        mainMenu = MainMenu(this, renderer, soundManager)
+        optionsMenu = OptionsMenu(this, renderer, soundManager)
         game = GdxGame(this, renderer, soundManager)
-        menu.start()
+        mainMenu.start()
     }
 
     override fun render() {

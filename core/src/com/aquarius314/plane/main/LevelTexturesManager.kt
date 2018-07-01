@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture
 class LevelTexturesManager(files: List<String> = Resources.levelTextures) : ImageManager(files) {
 
     override fun loadImage(fileName: String) {
-        val level = GdxGame.Level.levelNumber
+        val level = Settings.levelNumber
         val image = Texture(Gdx.files.internal("levels/$level/$fileName"))
         assets[fileName] = image
     }

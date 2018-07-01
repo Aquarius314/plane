@@ -21,13 +21,17 @@ class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
     var gravity = MeasurableProperty(-8f, 8f, 0f)
     val smokeManager = SmokeManager(this)
     val weaponManager = WeaponManager(this)
+    val scaleRate = 0.5f
+    override var colliderR: Float = super.colliderR * scaleRate
+
     var rotation: Float = gravity.value * 10f
         get() = gravity.value * 10f
 
     override fun display(renderer: Renderer) {
         smokeManager.display(renderer)
         weaponManager.display(renderer)
-        renderer.image("plane.png", x, y, rotation = rotation)
+        renderer.scaledImage("plane.png", x, y,
+                scaleRate = scaleRate, higher = false, rotation = rotation)
     }
 
     override fun actions(game: GdxGame) {
