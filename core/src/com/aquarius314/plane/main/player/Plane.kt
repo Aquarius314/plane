@@ -8,7 +8,7 @@ import com.aquarius314.plane.main.GdxGame
 import com.aquarius314.plane.main.effects.SmokeManager
 import com.aquarius314.plane.main.weapons.WeaponManager
 
-class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
+open class Plane constructor(x: Float, y: Float) : Movable(x, y), Active {
 
     var frozen = true
     var game: GdxGame? = null

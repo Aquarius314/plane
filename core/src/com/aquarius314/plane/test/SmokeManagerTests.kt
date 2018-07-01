@@ -1,7 +1,6 @@
 package com.aquarius314.plane.test
 
 import com.aquarius314.plane.main.effects.SmokeManager
-import com.aquarius314.plane.main.player.Plane
 import junit.framework.Assert.assertTrue
 import org.junit.Test
 
@@ -12,7 +11,7 @@ class SmokeManagerTests {
 
     @Test
     fun testSmokeManagerActions() {
-        val smokeManager = SmokeManager(Plane(x, y))
+        val smokeManager = SmokeManager(GdxMocker().mockPlane())
         val game = GdxMocker().mockGdxGame()
         assertTrue(smokeManager.smokes.size == 0)
         repeat(smokeManager.smokesPeriod, { smokeManager.actions(game) })
@@ -24,7 +23,7 @@ class SmokeManagerTests {
 
     @Test
     fun testMaxSmokes() {
-        val smokeManager = SmokeManager(Plane(x, y))
+        val smokeManager = SmokeManager(GdxMocker().mockPlane())
         val game = GdxMocker().mockGdxGame()
         assertTrue(smokeManager.smokes.size == 0)
         repeat(smokeManager.smokesPeriod * (smokeManager.maxNumberOfSmokes + 1),
