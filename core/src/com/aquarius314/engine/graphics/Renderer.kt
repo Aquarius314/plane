@@ -15,7 +15,8 @@ import com.badlogic.gdx.math.Vector2
 
 
 class Renderer(protected var shapeRenderer: ShapeRenderer = ShapeRenderer(),
-               protected var spriteBatch: SpriteBatch = SpriteBatch()) {
+               protected var spriteBatch: SpriteBatch = SpriteBatch(),
+               protected var specialImageManager: ImageManager? = null) {
 
     private val imageManager = ImageManager(Resources.textures)
     private val font = BitmapFont(Gdx.files.internal(Resources.font))
@@ -23,6 +24,12 @@ class Renderer(protected var shapeRenderer: ShapeRenderer = ShapeRenderer(),
     companion object {
         var scaling = Gdx.graphics.width/400f
             get() = Gdx.graphics.width/400f
+    }
+
+    init {
+        if (specialImageManager != null) {
+            imageManager.assets.putAll(specialImageManager!!.assets)
+        }
     }
 
     fun renderBackground() {
@@ -48,6 +55,13 @@ class Renderer(protected var shapeRenderer: ShapeRenderer = ShapeRenderer(),
         renderShape { shapeRenderer.rectLine(Vector2(x1, y1), Vector2(x2, y2), 4f) }
     }
 
+    fun rectangle(x: Float, y: Float, width: Float, height: Float, color: Color) {
+        renderShape {
+            shapeRenderer.color = color
+            shapeRenderer.rect(x, y, width, height)
+        }
+    }
+
     fun image(imageFile: String, x: Float, y: Float, scale: Boolean = true, rotation: Float = 0f) {
         val image = imageManager.get(imageFile)
         val sprite = Sprite(image)
@@ -65,7 +79,6 @@ class Renderer(protected var shapeRenderer: ShapeRenderer = ShapeRenderer(),
 
     fun text(text: String, x: Float, y: Float) {
         font.draw(spriteBatch, text, x, y)
-        println((1f * Gdx.graphics.width/Gdx.graphics.height / 1f).toString())
     }
 
     protected fun coordinateWithEffects(c: Float) : Float = c + getDistortion()

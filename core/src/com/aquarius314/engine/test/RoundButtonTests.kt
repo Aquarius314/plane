@@ -1,11 +1,11 @@
 package com.aquarius314.engine.test
 
-import com.aquarius314.engine.ui.Button
+import com.aquarius314.engine.ui.RoundButton
 import junit.framework.Assert.assertFalse
 import junit.framework.Assert.assertTrue
 import org.junit.Test
 
-class ButtonTests {
+class RoundButtonTests {
 
     private var clicked = false
     private val x = 100f
@@ -13,7 +13,7 @@ class ButtonTests {
     private val r = 20f
     private val imgFile = "_"
 
-    val button = object : Button(x, y, r, imgFile) {
+    val button = object : RoundButton(x, y, r, imgFile) {
         override fun onClick(x: Float, y: Float) {
             clicked = !clicked
         }

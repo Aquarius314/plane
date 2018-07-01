@@ -28,6 +28,6 @@ abstract class Movable constructor(x: Float = 0f, y: Float = 0f) : GameObject(x,
 
     override fun isExpired() : Boolean = !isVisible()
 
-    override fun isVisible(): Boolean = x + 500 > 0
+    open fun isVisible(): Boolean = x + 500 > 0
 
 }

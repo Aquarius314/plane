@@ -26,8 +26,8 @@ class UtilsTests {
         val pointX = 150f
         val pointY = 150f
         val areaR = 51*Math.sqrt(2.0).toFloat()
-        assertTrue(Utils.pointInArea(pointX, pointY, areaX, areaY, areaR))
-        assertFalse(Utils.pointInArea(pointX, pointY, areaX, areaY, areaR - 3f))
+        assertTrue(Utils.pointInCircle(pointX, pointY, areaX, areaY, areaR))
+        assertFalse(Utils.pointInCircle(pointX, pointY, areaX, areaY, areaR - 3f))
     }
 
 }

@@ -7,8 +7,13 @@ object Utils {
                 Math.pow(y1.toDouble() - y2.toDouble(), 2.0)).toFloat()
     }
 
-    fun pointInArea(pointX: Float, pointY: Float, areaX: Float, areaY: Float, areaR: Float) : Boolean {
-        return distance(pointX, pointY, areaX, areaY) <= areaR
+    fun pointInCircle(pointX: Float, pointY: Float, circleX: Float, circleY: Float, circleR: Float) : Boolean {
+        return distance(pointX, pointY, circleX, circleY) <= circleR
+    }
+
+    fun pointInRectangle(pointX: Float, pointY: Float, rectX: Float, rectY: Float, rectWidth: Float, rectHeight: Float) : Boolean {
+        return pointX in rectX..(rectX + rectWidth)
+                && pointY in rectY..(rectY + rectHeight)
     }
 
     fun <T> elementFactory(collection: ArrayList<T>, fn: (Float, Float) -> T)

@@ -1,58 +1,58 @@
 package com.aquarius314.plane.main
 
+import com.aquarius314.engine.application.GameScreen
 import com.aquarius314.engine.graphics.Renderer
 import com.aquarius314.engine.resources.SoundManager
 import com.aquarius314.plane.main.elements.DecorationManager
 import com.aquarius314.plane.main.elements.GameElementsManager
 import com.aquarius314.plane.main.player.Plane
-import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.InputProcessor
 
-class GdxGame : ApplicationAdapter() {
+class GdxGame constructor(gameMaster: GameMaster,
+                          renderer: Renderer,
+                          soundManager: SoundManager) : GameScreen(gameMaster, renderer, soundManager) {
 
+    companion object Level {
+        @JvmStatic
+        val levelNumber = 2
+    }
+
+    override val inputProcessor = MainInputProcessor(this)
     var plane = Plane(200f, 250f)
-    var renderer: Renderer? = null
-    var soundManager: SoundManager? = null
     var decorationManager : DecorationManager? = null
     var ui: UIManager? = null
     var elementsManager : GameElementsManager? = null
 
-	override fun create () {
-        renderer = Renderer()
+    init {
         ui = UIManager(this)
-        soundManager = SoundManager(Resources.sounds)
         decorationManager = DecorationManager()
         elementsManager = GameElementsManager()
-        Gdx.input.inputProcessor = MainInputProcessor(this)
         plane.game = this
-	}
+    }
 
     fun openMenu() {
+        // TODO temporary
         plane.frozen = !plane.frozen
     }
 
-	override fun render () {
+	override fun render (delta: Float) {
         calculate()
         renderGame()
 	}
 
-    fun calculate() {
+    private fun calculate() {
         plane.actions(this)
         decorationManager!!.actions(this)
         elementsManager!!.actions(this)
     }
 
-    fun renderGame() {
-        renderer!!.renderBackground()
-        decorationManager!!.display(renderer!!)
-        elementsManager!!.display(renderer!!)
-        plane.display(renderer!!)
-        ui!!.display(renderer!!)
-        renderer!!.finishRendering()
+    private fun renderGame() {
+        renderer.renderBackground()
+        decorationManager!!.display(renderer)
+        elementsManager!!.display(renderer)
+        plane.display(renderer)
+        ui!!.display(renderer)
+        renderer.finishRendering()
     }
-
-	override fun dispose () {
-        renderer!!.dispose()
-        soundManager!!.dispose()
-	}
 }
