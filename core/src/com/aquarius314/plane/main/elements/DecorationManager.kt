@@ -17,8 +17,6 @@ class DecorationManager : Active {
         val cloudFactory = {
             x: Float, y: Float, collection: ArrayList<Cloud> -> collection.add(Cloud(x, y))
         }
-//        val cloudFactory = Utils.elementFactory()
-        // TODO replace with Utils element factory method
         val minX = Gdx.graphics.width + 400
         val minY = Gdx.graphics.height - 100
         val maxY = Gdx.graphics.height - 400

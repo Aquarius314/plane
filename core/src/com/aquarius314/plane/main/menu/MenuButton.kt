@@ -1,12 +1,12 @@
 package com.aquarius314.plane.main.menu
 
 import com.aquarius314.engine.graphics.Renderer
-import com.aquarius314.engine.ui.RectangularClickable
+import com.aquarius314.engine.ui.RectangularButton
 import com.badlogic.gdx.graphics.Color
 
 abstract class MenuButton constructor(
         x: Float, y: Float, width: Float, height: Float, var text: String
-) : RectangularClickable(x, y, width, height) {
+) : RectangularButton(x, y, width, height, "") {
 
     override fun display(renderer: Renderer) {
         renderer.line(x, y, x + width, y, Color.CHARTREUSE)

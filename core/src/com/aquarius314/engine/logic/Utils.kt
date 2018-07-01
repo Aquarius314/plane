@@ -15,7 +15,4 @@ object Utils {
         return pointX in rectX..(rectX + rectWidth)
                 && pointY in rectY..(rectY + rectHeight)
     }
-
-    fun <T> elementFactory(collection: ArrayList<T>, fn: (Float, Float) -> T)
-            : (Float, Float) -> Boolean = { x, y -> collection.add(fn(x, y)) }
 }

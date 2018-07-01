@@ -6,8 +6,6 @@ import com.aquarius314.engine.resources.SoundManager
 import com.aquarius314.plane.main.elements.DecorationManager
 import com.aquarius314.plane.main.elements.GameElementsManager
 import com.aquarius314.plane.main.player.Plane
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.InputProcessor
 
 class GdxGame constructor(gameMaster: GameMaster,
                           renderer: Renderer,

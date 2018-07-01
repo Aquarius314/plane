@@ -18,7 +18,7 @@ class Menu constructor(gameMaster: GameMaster,
             object : MenuButton(100f, 100f, 200f, 100f, "Start") {
                 override fun onClick(x: Float, y: Float) {
                     gameMaster.game.start()
-                    println("Started!")
+                    println("Starting game!")
                 }
             }
         )

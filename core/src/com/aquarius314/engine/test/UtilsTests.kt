@@ -20,7 +20,7 @@ class UtilsTests {
     }
 
     @Test
-    fun testPointInArea() {
+    fun testPointInCircle() {
         val areaX = 100f
         val areaY = 100f
         val pointX = 150f
@@ -28,6 +28,21 @@ class UtilsTests {
         val areaR = 51*Math.sqrt(2.0).toFloat()
         assertTrue(Utils.pointInCircle(pointX, pointY, areaX, areaY, areaR))
         assertFalse(Utils.pointInCircle(pointX, pointY, areaX, areaY, areaR - 3f))
+    }
+
+    @Test
+    fun testPointInRectangle() {
+        val x = 0f
+        val y = 0f
+        val width = 100f
+        val height = 300f
+        assertTrue(Utils.pointInRectangle(10f, 10f, x, y, width, height))
+        assertFalse(Utils.pointInRectangle(-10f, 10f, x, y, width, height))
+    }
+
+    @Test
+    fun testElementFactory() {
+
     }
 
 }
